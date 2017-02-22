@@ -6,3 +6,11 @@ mkdir build
 cd build
 cmake .. -G "MinGW Makefiles"
 mingw32-make
+
+#On ubuntu
+1. Install CMake
+2. Open command line and go to folder where the respository is, then:
+mkdir build
+cd build
+cmake ..
+make
