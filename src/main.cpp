@@ -1,12 +1,20 @@
-#include <iostream>
+//#include <iostream>
+#include <algorithm> // std::replace
 
 //#define SDL_MAIN_HANDLED
 #include <SDL.h>
+#include <SDL_image.h>
 
-#include <cleanup.hpp>
+#include <TextureObject.hpp>
 
-const int SCREEN_WIDTH  = 640;
-const int SCREEN_HEIGHT = 480;
+#ifdef _WIN32
+	const char PATH_SEP = '\\';
+#else
+	const char PATH_SEP = '/';
+#endif
+
+const int SCREEN_WIDTH  = 800;
+const int SCREEN_HEIGHT = 600;
 const int TILE_SIZE = 40;
 
 int main(int argc, char *argv[])
@@ -19,9 +27,16 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
+	{
+		std::cout<<"IMG_INT error"<<std::endl;
+		SDL_Quit();
+		return 1;
+	}
+
 	std::cout<<"window"<<std::endl;
-	SDL_Window *window = SDL_CreateWindow("Shop builder", 100, 100, SCREEN_WIDTH,
-		SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	SDL_Window *window = SDL_CreateWindow("Builder", 100, 100, SCREEN_WIDTH,
+		SCREEN_HEIGHT, SDL_WINDOW_SHOWN); // SDL_WINDOW_SHOWN is ignored
 	if (window == nullptr)
 	{
 		std::cout<<"CreateWindow error"<<std::endl;
@@ -29,24 +44,38 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1,
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_SetWindowBrightness(window, 1.0);
+
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1,
+			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr)
 	{
-		std::cout<<"CreateRenderer error"<<std::endl;
-		cleanup(window);
+		std::cout<<"CreateRenderer renderer2 error"<<std::endl;
+		SDL_DestroyWindow(window);
 		SDL_Quit();
 		return 1;
 	}
 
-	//Our event structure
+	// Select the white color for cleaning the window
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+	std::string temporaryPath = SOURCEFOLDERPATH;
+	std::replace( temporaryPath.begin(), temporaryPath.end(), '/', '\\');
+	temporaryPath = temporaryPath + PATH_SEP;
+	temporaryPath = temporaryPath + "graphics";
+	temporaryPath = temporaryPath + PATH_SEP;
+	temporaryPath = temporaryPath + "png";
+	temporaryPath = temporaryPath + PATH_SEP;
+	temporaryPath = temporaryPath + "TitleScreen.png";
+
+	TextureObject backgroundTexture(temporaryPath, renderer);
+
 	SDL_Event e;
 	bool quit = false;
 	while (!quit){
 		while (SDL_PollEvent(&e)){
 			if (e.type == SDL_QUIT)
 				quit = true;
-			//Use number input to select which clip should be drawn
 			if (e.type == SDL_KEYDOWN){
 				switch (e.key.keysym.sym){
 					case SDLK_ESCAPE:
@@ -57,13 +86,16 @@ int main(int argc, char *argv[])
 				}
 			}
 			SDL_RenderClear(renderer);
+			backgroundTexture.render();
 			SDL_RenderPresent(renderer);
 		}
 	}
 
 	std::cout<<"before cleaning"<<std::endl;
 
-	cleanup(renderer, window);
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	IMG_Quit();
 	SDL_Quit();
 
 	std::cout<<"end of program"<<std::endl;
