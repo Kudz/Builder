@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="kwadraty.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-162.14286"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="745"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3793"
+       transform="translate(1.7142857,-5.7142857)"
+       inkscape:export-filename="D:\Builder\graphics\png\kwadraty.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="43.981144"
+         x="26.000149"
+         height="64"
+         width="64"
+         id="rect2985"
+         style="fill:#800000;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none" />
+      <rect
+         style="fill:#ffff00;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none"
+         id="rect2987"
+         width="64"
+         height="64"
+         x="122.00014"
+         y="43.981144" />
+      <rect
+         y="43.981144"
+         x="218.00015"
+         height="64"
+         width="64"
+         id="rect2989"
+         style="fill:#d40000;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none" />
+      <rect
+         style="fill:#000080;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none"
+         id="rect2991"
+         width="64"
+         height="64"
+         x="314.00015"
+         y="43.981144" />
+    </g>
+    <g
+       id="g3779"
+       transform="translate(1.0000962,-9.5238133)"
+       inkscape:export-filename="D:\Builder\graphics\png\kwadraty.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="143.79077"
+         x="26.714338"
+         height="64"
+         width="64"
+         id="rect2993"
+         style="fill:#ff00ff;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none" />
+      <rect
+         style="fill:#aa4400;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none"
+         id="rect2995"
+         width="64"
+         height="64"
+         x="122.71434"
+         y="143.79077" />
+      <rect
+         y="143.79077"
+         x="218.71434"
+         height="64"
+         width="64"
+         id="rect2997"
+         style="fill:#00ffff;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none" />
+      <rect
+         style="fill:#0000ff;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none"
+         id="rect2999"
+         width="64"
+         height="64"
+         x="314.71432"
+         y="143.79077" />
+    </g>
+    <g
+       id="g3785"
+       transform="translate(1.0002857e-4,-4.9522869)"
+       inkscape:export-filename="D:\Builder\graphics\png\kwadraty.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <rect
+         y="235.21935"
+         x="27.714334"
+         height="64"
+         width="64"
+         id="rect3001"
+         style="fill:#008000;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none" />
+      <rect
+         style="fill:#00ff00;fill-opacity:0.99574471;fill-rule:nonzero;stroke:none"
+         id="rect3003"
+         width="64"
+         height="64"
+         x="123.71433"
+         y="235.21935" />
+    </g>
+  </g>
+</svg>

@@ -6,6 +6,9 @@
 #include <SDL_image.h>
 
 #include <TextureObject.hpp>
+#include <Sprite.hpp>
+#include <MultiSprite.hpp>
+#include <ClickableObject.hpp>
 
 #ifdef _WIN32
 	const char PATH_SEP = '\\';
@@ -59,16 +62,45 @@ int main(int argc, char *argv[])
 	// Select the white color for cleaning the window
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
-	std::string temporaryPath = SOURCEFOLDERPATH;
-	std::replace( temporaryPath.begin(), temporaryPath.end(), '/', '\\');
-	temporaryPath = temporaryPath + PATH_SEP;
-	temporaryPath = temporaryPath + "graphics";
-	temporaryPath = temporaryPath + PATH_SEP;
-	temporaryPath = temporaryPath + "png";
-	temporaryPath = temporaryPath + PATH_SEP;
-	temporaryPath = temporaryPath + "TitleScreen.png";
-
-	TextureObject backgroundTexture(temporaryPath, renderer);
+	std::string pngDirectoryPath = SOURCEFOLDERPATH;
+	std::replace( pngDirectoryPath.begin(), pngDirectoryPath.end(), '/', '\\');
+	pngDirectoryPath = pngDirectoryPath + PATH_SEP;
+	pngDirectoryPath = pngDirectoryPath + "graphics";
+	pngDirectoryPath = pngDirectoryPath + PATH_SEP;
+	pngDirectoryPath = pngDirectoryPath + "png";
+	pngDirectoryPath = pngDirectoryPath + PATH_SEP;
+	std::string backgroundPNG = pngDirectoryPath + "TitleScreen.png";
+	std::string buttonsPNG = pngDirectoryPath + "Button.png";
+	std::string kwadratyPNG = pngDirectoryPath + "kwadraty.png";
+	
+	std::cout<<"twoButton path = "<<buttonsPNG<<std::endl;
+	TextureObject backgroundTexture(backgroundPNG, renderer);
+	
+	//~ TextureObject emptyTexture(kwadratyPNG, renderer);
+	TextureObject emptyTexture;
+	MultiSprite emptyMultiSprite;
+	emptyTexture.loadTexture(kwadratyPNG);
+	
+	Sprite twoButton(buttonsPNG, renderer);
+	twoButton.setPosition(100,100);
+	
+	ClipArray buttonClipArray(400, 100, 1, 3, 0, 20);
+	MultiSprite buttonMultiSprite(buttonsPNG, renderer, buttonClipArray);
+	buttonMultiSprite.setPosition((SCREEN_WIDTH/2) - (buttonMultiSprite.getTextureWidth()/2),150);
+	
+	ClickableObject firstButton(buttonMultiSprite, 0, 1, 2);
+	
+	std::cout<<"before second Button"<<std::endl;
+	ClickableObject secondButton = firstButton;
+	secondButton.moveObjectAlongY(150);
+	
+	std::cout<<"before third Button"<<std::endl;
+	ClickableObject thirdButton(secondButton);
+	thirdButton.moveObjectAlongY(150);
+	
+	ClipArray kwadratyClipArray(64, 64, 3, 10, 32, 32);
+	MultiSprite kwadraty(kwadratyPNG, renderer, kwadratyClipArray);
+	kwadraty.setPosition((SCREEN_WIDTH/2) - (kwadraty.getTextureWidth()/2),450);
 
 	SDL_Event e;
 	bool quit = false;
@@ -87,6 +119,14 @@ int main(int argc, char *argv[])
 			}
 			SDL_RenderClear(renderer);
 			backgroundTexture.render();
+		//	twoButton.render();
+			//~ buttonMultiSprite.render(&e);
+			firstButton.render(&e);
+			secondButton.render(&e);
+			thirdButton.render(&e);
+			//~ kwadraty.render(&e);
+			emptyTexture.render();
+			emptyMultiSprite.render();
 			SDL_RenderPresent(renderer);
 		}
 	}
