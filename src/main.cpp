@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr)
 	{
-		std::cout<<"CreateRenderer renderer2 error"<<std::endl;
+		std::cout<<"CreateRenderer renderer error"<<std::endl;
 		SDL_DestroyWindow(window);
 		SDL_Quit();
 		return 1;
@@ -71,18 +71,8 @@ int main(int argc, char *argv[])
 	pngDirectoryPath = pngDirectoryPath + PATH_SEP;
 	std::string backgroundPNG = pngDirectoryPath + "TitleScreen.png";
 	std::string buttonsPNG = pngDirectoryPath + "Button.png";
-	std::string kwadratyPNG = pngDirectoryPath + "kwadraty.png";
 	
-	std::cout<<"twoButton path = "<<buttonsPNG<<std::endl;
 	TextureObject backgroundTexture(backgroundPNG, renderer);
-	
-	//~ TextureObject emptyTexture(kwadratyPNG, renderer);
-	TextureObject emptyTexture;
-	MultiSprite emptyMultiSprite;
-	emptyTexture.loadTexture(kwadratyPNG);
-	
-	Sprite twoButton(buttonsPNG, renderer);
-	twoButton.setPosition(100,100);
 	
 	ClipArray buttonClipArray(400, 100, 1, 3, 0, 20);
 	MultiSprite buttonMultiSprite(buttonsPNG, renderer, buttonClipArray);
@@ -90,17 +80,11 @@ int main(int argc, char *argv[])
 	
 	ClickableObject firstButton(buttonMultiSprite, 0, 1, 2);
 	
-	std::cout<<"before second Button"<<std::endl;
 	ClickableObject secondButton = firstButton;
 	secondButton.moveObjectAlongY(150);
 	
-	std::cout<<"before third Button"<<std::endl;
 	ClickableObject thirdButton(secondButton);
 	thirdButton.moveObjectAlongY(150);
-	
-	ClipArray kwadratyClipArray(64, 64, 3, 10, 32, 32);
-	MultiSprite kwadraty(kwadratyPNG, renderer, kwadratyClipArray);
-	kwadraty.setPosition((SCREEN_WIDTH/2) - (kwadraty.getTextureWidth()/2),450);
 
 	SDL_Event e;
 	bool quit = false;
@@ -119,14 +103,9 @@ int main(int argc, char *argv[])
 			}
 			SDL_RenderClear(renderer);
 			backgroundTexture.render();
-		//	twoButton.render();
-			//~ buttonMultiSprite.render(&e);
 			firstButton.render(&e);
 			secondButton.render(&e);
 			thirdButton.render(&e);
-			//~ kwadraty.render(&e);
-			emptyTexture.render();
-			emptyMultiSprite.render();
 			SDL_RenderPresent(renderer);
 		}
 	}
