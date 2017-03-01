@@ -1,9 +1,12 @@
 #include <GameManager.hpp>
 
 GameManager::GameManager()
-: _screenWidth(800), _screenHeight(600), _SDLInitialisation(false)
+: _screenWidth(800), _screenHeight(600), _SDLInitialisation(false), _pathToSourceFolder(""), _window(nullptr), _renderer(nullptr)
 {
 	this->initializeSDL();
+	this->_pathToSourceFolder = SOURCEFOLDERPATH;
+	std::cout<<"sourcePath = "<<this->_pathToSourceFolder<<std::endl;
+	std::replace( this->_pathToSourceFolder.begin(), this->_pathToSourceFolder.end(), '/', '\\');
 }
 
 void GameManager::initializeSDL()
@@ -71,22 +74,26 @@ void GameManager::run()
 	if(_SDLInitialisation)
 	{
 		std::string pngDirectoryPath = SOURCEFOLDERPATH;
-		std::replace( pngDirectoryPath.begin(), pngDirectoryPath.end(), '/', '\\');
-		pngDirectoryPath = pngDirectoryPath + PATH_SEP;
-		pngDirectoryPath = pngDirectoryPath + "graphics";
-		pngDirectoryPath = pngDirectoryPath + PATH_SEP;
-		pngDirectoryPath = pngDirectoryPath + "png";
-		pngDirectoryPath = pngDirectoryPath + PATH_SEP;
+		//~ std::replace( pngDirectoryPath.begin(), pngDirectoryPath.end(), '/', '\\');
+		//~ pngDirectoryPath = pngDirectoryPath + PATH_SEP;
+		//~ pngDirectoryPath = pngDirectoryPath + "graphics";
+		//~ pngDirectoryPath = pngDirectoryPath + PATH_SEP;
+		//~ pngDirectoryPath = pngDirectoryPath + "png";
+		//~ pngDirectoryPath = pngDirectoryPath + PATH_SEP;
+		pngDirectoryPath = pngDirectoryPath + "/graphics/png/";
+		CSF::adjustPath(pngDirectoryPath);
 		std::string backgroundPNG = pngDirectoryPath + "TitleScreen.png";
 		std::string buttonsPNG = pngDirectoryPath + "Button.png";
 
 		std::string fontSansDirectoryPath = SOURCEFOLDERPATH;
-		std::replace( fontSansDirectoryPath.begin(), fontSansDirectoryPath.end(), '/', '\\');
-		fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
-		fontSansDirectoryPath = fontSansDirectoryPath + "fonts";
-		fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
-		fontSansDirectoryPath = fontSansDirectoryPath + "open_sans";
-		fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
+		//~ std::replace( fontSansDirectoryPath.begin(), fontSansDirectoryPath.end(), '/', '\\');
+		//~ fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
+		//~ fontSansDirectoryPath = fontSansDirectoryPath + "fonts";
+		//~ fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
+		//~ fontSansDirectoryPath = fontSansDirectoryPath + "open_sans";
+		//~ fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
+		fontSansDirectoryPath = fontSansDirectoryPath + "/fonts/open_sans/";
+		CSF::adjustPath(fontSansDirectoryPath);
 		std::string openSansFONT = fontSansDirectoryPath + "OpenSans-Regular.ttf";
 
 		TextObject messageTexture(openSansFONT, this->_renderer, "Builder v0.1");
