@@ -18,6 +18,7 @@ TextureObject::~TextureObject()
 	if(this->_texture != nullptr)
 	{
 		SDL_DestroyTexture(this->_texture);
+		this->_texture = nullptr;
 	}
 }
 
@@ -73,32 +74,21 @@ bool TextureObject::loadTexture(const std::string &pathToFile, SDL_Renderer* ren
 
 bool TextureObject::loadTexture(const std::string &pathToFile)
 {
-	//~ std::cout<<"Path to File = "<<pathToFile<<std::endl;
 	if(this->_hasTexture)
 	{
 		SDL_DestroyTexture(this->_texture);
-		this->_texture = IMG_LoadTexture(this->_renderer, pathToFile.c_str());
-		if (this->_texture == nullptr)
-		{
-			this->_hasTexture = false;
-			std::cout<<"LoadTexture error"<<std::endl;
-		}
-		else
-		{
-			this->_hasTexture = true;
-		}
+		this->_texture = nullptr;
+		this->_hasTexture = false;		
+	}
+	
+	this->_texture = IMG_LoadTexture(this->_renderer, pathToFile.c_str());
+	if (this->_texture == nullptr)
+	{
+		std::cout<<"LoadTexture error"<<std::endl;
 	}
 	else
 	{
-		this->_texture = IMG_LoadTexture(this->_renderer, pathToFile.c_str());
-		if (this->_texture == nullptr)
-		{
-			std::cout<<"LoadTexture error"<<std::endl;
-		}
-		else
-		{
-			_hasTexture = true;
-		}
+		this->_hasTexture = true;
 	}
 }
 

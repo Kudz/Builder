@@ -9,6 +9,7 @@
 #include <Sprite.hpp>
 #include <MultiSprite.hpp>
 #include <ClickableObject.hpp>
+#include <TextObject.hpp>
 
 #ifdef _WIN32
 	const char PATH_SEP = '\\';
@@ -33,6 +34,13 @@ int main(int argc, char *argv[])
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
 	{
 		std::cout<<"IMG_INT error"<<std::endl;
+		SDL_Quit();
+		return 1;
+	}
+	
+	if (TTF_Init() != 0){
+		std::cout<<"TTF_Init error"<<std::endl;
+		IMG_Quit();
 		SDL_Quit();
 		return 1;
 	}
@@ -72,6 +80,17 @@ int main(int argc, char *argv[])
 	std::string backgroundPNG = pngDirectoryPath + "TitleScreen.png";
 	std::string buttonsPNG = pngDirectoryPath + "Button.png";
 	
+	std::string fontSansDirectoryPath = SOURCEFOLDERPATH;
+	std::replace( fontSansDirectoryPath.begin(), fontSansDirectoryPath.end(), '/', '\\');
+	fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
+	fontSansDirectoryPath = fontSansDirectoryPath + "fonts";
+	fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
+	fontSansDirectoryPath = fontSansDirectoryPath + "open_sans";
+	fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
+	std::string openSansFONT = fontSansDirectoryPath + "OpenSans-Regular.ttf";
+	
+	TextObject messageTexture(openSansFONT, renderer, "Builder v0.1");
+	
 	TextureObject backgroundTexture(backgroundPNG, renderer);
 	
 	ClipArray buttonClipArray(400, 100, 1, 3, 0, 20);
@@ -106,6 +125,7 @@ int main(int argc, char *argv[])
 			firstButton.render(&e);
 			secondButton.render(&e);
 			thirdButton.render(&e);
+			messageTexture.render();
 			SDL_RenderPresent(renderer);
 		}
 	}
@@ -114,8 +134,12 @@ int main(int argc, char *argv[])
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-	IMG_Quit();
-	SDL_Quit();
+	//~ TTF_Quit();
+	//~ IMG_Quit();
+	//~ SDL_Quit();
+	atexit(TTF_Quit); // Ensure TTF_Quit() is called when we exit
+	atexit(IMG_Quit); // Ensure TTF_Quit() is called when we exit
+	atexit(SDL_Quit); // Ensure TTF_Quit() is called when we exit
 
 	std::cout<<"end of program"<<std::endl;
 

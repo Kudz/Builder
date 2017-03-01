@@ -34,6 +34,11 @@ if (WIN32)
     find_library(SDL2_IMAGE_LIBRARY NAME SDL2_image PATHS ${CMAKE_CURRENT_SOURCE_DIR}/windows/SDL2_Image/lib/ NO_DEFAULT_PATH)
     list(APPEND MY_SEARCHING_DLL_FOLDER "${CMAKE_CURRENT_SOURCE_DIR}/windows/SDL2_Image/dll/*.dll")
     
+    # adding SDL2_ttf libraries 
+    list(APPEND MY_SEARCHING_HPP_FOLDER "windows/SDL2_ttf/include/*.hpp" "windows/SDL2_ttf/include/*.h")
+    find_library(SDL2_TTF_LIBRARY NAME SDL2_ttf PATHS ${CMAKE_CURRENT_SOURCE_DIR}/windows/SDL2_ttf/lib/ NO_DEFAULT_PATH)
+    list(APPEND MY_SEARCHING_DLL_FOLDER "${CMAKE_CURRENT_SOURCE_DIR}/windows/SDL2_ttf/dll/*.dll")
+    
     file(GLOB_RECURSE DLL_FILES ${MY_SEARCHING_DLL_FOLDER})
     
     message("windows detected")
@@ -62,7 +67,7 @@ list(REMOVE_DUPLICATES ALL_INCLUDE_DIRS)
 add_executable(builder ${EXECUTABLE_FILES} ${HEADER_FILES})
 
 include_directories(${ALL_INCLUDE_DIRS})
-target_link_libraries (builder ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
+target_link_libraries (builder ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY})
 
 message("MY_SEARCHING_DLL_FOLDER = " ${MY_SEARCHING_DLL_FOLDER})
 message("DLL_FILES = " ${DLL_FILES})
