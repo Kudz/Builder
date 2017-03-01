@@ -74,24 +74,12 @@ void GameManager::run()
 	if(_SDLInitialisation)
 	{
 		std::string pngDirectoryPath = SOURCEFOLDERPATH;
-		//~ std::replace( pngDirectoryPath.begin(), pngDirectoryPath.end(), '/', '\\');
-		//~ pngDirectoryPath = pngDirectoryPath + PATH_SEP;
-		//~ pngDirectoryPath = pngDirectoryPath + "graphics";
-		//~ pngDirectoryPath = pngDirectoryPath + PATH_SEP;
-		//~ pngDirectoryPath = pngDirectoryPath + "png";
-		//~ pngDirectoryPath = pngDirectoryPath + PATH_SEP;
 		pngDirectoryPath = pngDirectoryPath + "/graphics/png/";
 		CSF::adjustPath(pngDirectoryPath);
 		std::string backgroundPNG = pngDirectoryPath + "TitleScreen.png";
 		std::string buttonsPNG = pngDirectoryPath + "Button.png";
 
 		std::string fontSansDirectoryPath = SOURCEFOLDERPATH;
-		//~ std::replace( fontSansDirectoryPath.begin(), fontSansDirectoryPath.end(), '/', '\\');
-		//~ fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
-		//~ fontSansDirectoryPath = fontSansDirectoryPath + "fonts";
-		//~ fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
-		//~ fontSansDirectoryPath = fontSansDirectoryPath + "open_sans";
-		//~ fontSansDirectoryPath = fontSansDirectoryPath + PATH_SEP;
 		fontSansDirectoryPath = fontSansDirectoryPath + "/fonts/open_sans/";
 		CSF::adjustPath(fontSansDirectoryPath);
 		std::string openSansFONT = fontSansDirectoryPath + "OpenSans-Regular.ttf";
