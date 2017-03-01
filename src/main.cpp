@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
 	std::string openSansFONT = fontSansDirectoryPath + "OpenSans-Regular.ttf";
 	
 	TextObject messageTexture(openSansFONT, renderer, "Builder v0.1");
+	messageTexture.setPositionOnScreen(SCREEN_WIDTH - messageTexture.getTextureWidth(), SCREEN_HEIGHT - messageTexture.getTextureHeight());
 	
 	TextureObject backgroundTexture(backgroundPNG, renderer);
 	
@@ -99,11 +100,20 @@ int main(int argc, char *argv[])
 	
 	ClickableObject firstButton(buttonMultiSprite, 0, 1, 2);
 	
+	TextObject newGameMessageTexture(openSansFONT, renderer, "New Game", 32);
+	newGameMessageTexture.setPositionOnScreen(firstButton.getObjectXPosition() + ((firstButton.getObjectTextureWidth()-newGameMessageTexture.getTextureWidth())/2), firstButton.getObjectYPosition() + ((firstButton.getObjectTextureHeight()-newGameMessageTexture.getTextureHeight())/2));
+	
 	ClickableObject secondButton = firstButton;
 	secondButton.moveObjectAlongY(150);
 	
+	TextObject loadGameMessageTexture(openSansFONT, renderer, "Load Game", 32);
+	loadGameMessageTexture.setPositionOnScreen(secondButton.getObjectXPosition() + ((secondButton.getObjectTextureWidth()-loadGameMessageTexture.getTextureWidth())/2), secondButton.getObjectYPosition() + ((secondButton.getObjectTextureHeight()-loadGameMessageTexture.getTextureHeight())/2));
+	
 	ClickableObject thirdButton(secondButton);
 	thirdButton.moveObjectAlongY(150);
+	
+	TextObject exitGameMessageTexture(openSansFONT, renderer, "Exit", 32);
+	exitGameMessageTexture.setPositionOnScreen(thirdButton.getObjectXPosition() + ((thirdButton.getObjectTextureWidth()-exitGameMessageTexture.getTextureWidth())/2), thirdButton.getObjectYPosition() + ((thirdButton.getObjectTextureHeight()-exitGameMessageTexture.getTextureHeight())/2));
 
 	SDL_Event e;
 	bool quit = false;
@@ -123,8 +133,11 @@ int main(int argc, char *argv[])
 			SDL_RenderClear(renderer);
 			backgroundTexture.render();
 			firstButton.render(&e);
+			newGameMessageTexture.render();
 			secondButton.render(&e);
+			loadGameMessageTexture.render();
 			thirdButton.render(&e);
+			exitGameMessageTexture.render();
 			messageTexture.render();
 			SDL_RenderPresent(renderer);
 		}

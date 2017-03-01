@@ -119,3 +119,19 @@ void TextObject::render()
 		//~ SDL_RenderCopy(this->_renderer, this->_texture, NULL, NULL);
 	}
 }
+
+int TextObject::getTextureWidth()
+{
+	return this->_textureWidth;
+}
+
+int TextObject::getTextureHeight()
+{
+	return this->_textureHeight;
+}
+
+void TextObject::setPositionOnScreen(int xPositionOnScreen, int yPositionOnScreen)
+{
+	this->_xPositionOnScreen = xPositionOnScreen;
+	this->_yPositionOnScreen = yPositionOnScreen;
+}

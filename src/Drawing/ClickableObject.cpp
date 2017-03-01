@@ -108,6 +108,16 @@ void ClickableObject::setClipsNumbers(int defaultClip, int focusedClip, int clic
 	this->setClickedClip(clickedClip);
 }
 
+int ClickableObject::getObjectXPosition()
+{
+	return this->_multiSpriteObject.getXPosition();
+}
+
+int ClickableObject::getObjectYPosition()
+{
+	return this->_multiSpriteObject.getYPosition();
+}
+
 void ClickableObject::setObjectPosition(int xPosition, int yPosition)
 {
 	this->_multiSpriteObject.setPosition(xPosition, yPosition);
@@ -131,4 +141,14 @@ void ClickableObject::moveObjectAlongX(int xOffset)
 void ClickableObject::moveObjectAlongY(int yOffset)
 {
 	this->_multiSpriteObject.setYPosition(this->_multiSpriteObject.getYPosition() + yOffset);
+}
+
+int ClickableObject::getObjectTextureWidth()
+{
+	return this->_multiSpriteObject.getTextureWidth();
+}
+		
+int ClickableObject::getObjectTextureHeight()
+{
+	return this->_multiSpriteObject.getTextureHeight();
 }

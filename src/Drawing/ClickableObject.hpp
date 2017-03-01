@@ -3,6 +3,7 @@
 
 #include <MultiSprite.hpp>
 
+//should inherited MultiSprite?
 class ClickableObject
 {
 	public:
@@ -17,9 +18,13 @@ class ClickableObject
 		void setClipsNumbers(int defaultClip, int focusedClip, int clickedClip);
 		void moveObjectAlongX(int xOffset);
 		void moveObjectAlongY(int yOffset);
+		int getObjectXPosition();
+		int getObjectYPosition();
 		void setObjectXPosition(int xPosition);
 		void setObjectYPosition(int yPosition);
 		void setObjectPosition(int xPosition, int yPosition);
+		int getObjectTextureWidth();
+		int getObjectTextureHeight();
 	private:
 		int _defaultClipNumber;
 		int _focusedClipNumber;

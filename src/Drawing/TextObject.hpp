@@ -18,6 +18,9 @@ class TextObject
 		void loadMessageTexture(const std::string &message, SDL_Color fontColor);
 		void loadMessageTexture(const std::string &message, int fontSize, SDL_Color fontColor);
 		void render();
+		int getTextureWidth();
+		int getTextureHeight();
+		void setPositionOnScreen(int xPositionOnScreen, int yPositionOnScreen);
 	private:
 		void loadFont();
 		std::string _pathToFontFile;
